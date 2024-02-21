@@ -18,13 +18,30 @@ public class MyPanel extends JPanel {
     private int delta = 10;
     private ArrayList<Rectangle> outlist = new ArrayList<Rectangle>();
     public void setSymbols(String parm) {
-        segment(1);
-        segment(2);
-        segment(3);
-        segment(4);
-        segment(5);
-        segment(6);
-        segment(7);
+        String[] arr = parm.replace(",","").split(" ");
+        for (String cifra:arr) {
+            switch (cifra) {
+                case "1":
+                    segment(2);
+                    segment(4);
+                    break;
+                case "2":
+                    segment(1);
+                    segment(2);
+                    segment(3);
+                    segment(6);
+                    segment(5);
+                    break;
+                case "3":
+                    segment(1);
+                    segment(2);
+                    segment(3);
+                    segment(4);
+                    segment(5);
+                    break;
+            }
+        }
+        x = x + step + width;
     }
     private void segment(int number) {
         switch (number){
@@ -62,6 +79,8 @@ public class MyPanel extends JPanel {
 
         //Draw Text
         //g.drawString("This is my custom Panel!",10,20);
-        g.drawLine(x, y, width, height);
+        for (Rectangle rect:outlist) {
+            g.drawLine(x, y, width, height);
+        }
     }
 }
